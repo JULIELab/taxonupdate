@@ -9,7 +9,7 @@ This project contains the functions necessary to update the list of species used
 
 ---------------
 
-The species dictionaries available for LINNAEUS via https://sourceforge.net/projects/linnaeus/files/Entity_packs/ haven't been updated since 2011. To be able to tag the most recently discovered species, build a new one using the following lines of Python:::
+The species dictionaries available for LINNAEUS via https://sourceforge.net/projects/linnaeus/files/Entity_packs/ haven't been updated since 2011. To be able to tag the most recently discovered species, build a new one using the following lines of Python::
 
   from taxonomy_update import make_variants, taxonomy2dict
 
