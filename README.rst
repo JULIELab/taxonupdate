@@ -22,3 +22,4 @@ The species dictionaries available for LINNAEUS via https://sourceforge.net/proj
           variants = sorted(make_variants(entry))
           species.write(PREFIX + entry['ID'] + '\t' + '|'.join(variants) + '\n')
 
+taxonomy.dat can be downloaded from ftp://ftp.ebi.ac.uk/pub/databases/taxonomy/taxonomy.dat
