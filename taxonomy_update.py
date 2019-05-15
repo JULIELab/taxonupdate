@@ -85,7 +85,7 @@ def make_variants(tax_entry: Dict) -> List[str]:
         for value in values:
             tokens = value.split()
             if len(tokens) == 1:
-                variants.append(value)
+                variants.add(value)
             elif tokens[0].isalpha() and tokens[1].isalpha():
                 # Original spelling
                 variants.add(value)
