@@ -1,0 +1,355 @@
+ID                        : 1
+PARENT ID                 : 0
+RANK                      : no rank
+GC ID                     : 1
+SCIENTIFIC NAME           : root
+SYNONYM                   : all
+//
+ID                        : 2759
+PARENT ID                 : 131567
+RANK                      : superkingdom
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Eukaryota
+GENBANK COMMON NAME       : eucaryotes
+SYNONYM                   : Eukaryotae
+SYNONYM                   : Eucaryotae
+SYNONYM                   : Eucarya
+SYNONYM                   : Eukarya
+COMMON NAME               : eukaryotes
+BLAST NAME                : eukaryotes
+//
+ID                        : 3193
+PARENT ID                 : 131221
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Embryophyta
+COMMON NAME               : higher plants
+COMMON NAME               : plants
+COMMON NAME               : land plants
+BLAST NAME                : land plants
+//
+ID                        : 3398
+PARENT ID                 : 58024
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Magnoliophyta
+GENBANK COMMON NAME       : flowering plants
+SYNONYM                   : Angiospermae
+COMMON NAME               : angiosperms
+BLAST NAME                : flowering plants
+//
+ID                        : 3744
+PARENT ID                 : 91835
+RANK                      : order
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Rosales
+INCLUDES                  : Rosanae
+INCLUDES                  : Rhamnales
+INCLUDES                  : Urticales
+//
+ID                        : 3745
+PARENT ID                 : 3744
+RANK                      : family
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Rosaceae
+SYNONYM                   : Malaceae
+COMMON NAME               : rose family
+//
+ID                        : 3746
+PARENT ID                 : 1184124
+RANK                      : genus
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria
+//
+ID                        : 3747
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria x ananassa
+GENBANK COMMON NAME       : strawberry
+SYNONYM                   : Fragaria ananassa
+SYNONYM                   : Fragaria virginiana x Fragaria chiloensis
+SYNONYM                   : Fragaria chiloensis x Fragaria virginiana
+MISSPELLING               : Fragraria x ananassa
+//
+ID                        : 33090
+PARENT ID                 : 2759
+RANK                      : kingdom
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Viridiplantae
+SYNONYM                   : Chlorophyta/Embryophyta group
+SYNONYM                   : Chlorobionta
+COMMON NAME               : green plants
+BLAST NAME                : green plants
+EQUIVALENT NAME           : chlorophyte/embryophyte group
+//
+ID                        : 35493
+PARENT ID                 : 33090
+RANK                      : phylum
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Streptophyta
+//
+ID                        : 57918
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria vesca
+GENBANK COMMON NAME       : wild strawberry
+COMMON NAME               : European strawberry
+COMMON NAME               : alpine strawberry
+COMMON NAME               : wood strawberry
+//
+ID                        : 58023
+PARENT ID                 : 3193
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Tracheophyta
+COMMON NAME               : vascular plants
+BLAST NAME                : vascular plants
+//
+ID                        : 58024
+PARENT ID                 : 78536
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Spermatophyta
+COMMON NAME               : seed plants
+BLAST NAME                : seed plants
+//
+ID                        : 60188
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria nubicola
+//
+ID                        : 64939
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria iinumae
+//
+ID                        : 64940
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria moschata
+SYNONYM                   : Fragaria elatior
+MISSPELLING               : Fragaria moshchata
+//
+ID                        : 64941
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria nilgerrensis
+//
+ID                        : 64942
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria viridis
+SYNONYM                   : Fragaria collina
+SYNONYM                   : Fragaria vesca var. sativa
+//
+ID                        : 71240
+PARENT ID                 : 1437183
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : eudicotyledons
+IN-PART                   : Magnoliopsida
+IN-PART                   : dicots
+IN-PART                   : dicotyledons
+IN-PART                   : Dicotyledoneae
+BLAST NAME                : eudicots
+//
+ID                        : 71275
+PARENT ID                 : 1437201
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : rosids
+IN-PART                   : Rosidae
+//
+ID                        : 78536
+PARENT ID                 : 58023
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Euphyllophyta
+EQUIVALENT NAME           : euphyllophytes
+//
+ID                        : 91835
+PARENT ID                 : 71275
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : fabids
+SYNONYM                   : eurosids I
+//
+ID                        : 91827
+PARENT ID                 : 71240
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Gunneridae
+EQUIVALENT NAME           : core eudicots
+EQUIVALENT NAME           : core eudicotyledons
+//
+ID                        : 101007
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria chiloensis
+//
+ID                        : 101008
+PARENT ID                 : 101007
+RANK                      : subspecies
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria chiloensis subsp. pacifica
+//
+ID                        : 101009
+PARENT ID                 : 101007
+RANK                      : subspecies
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria chiloensis subsp. lucida
+//
+ID                        : 101010
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria daltoniana
+//
+ID                        : 101011
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria gracilis
+//
+ID                        : 101012
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria nipponica
+//
+ID                        : 101013
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria orientalis
+//
+ID                        : 101014
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria pentaphylla
+//
+ID                        : 101015
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria virginiana
+//
+ID                        : 101021
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria sp. CFRA 538
+//
+ID                        : 131221
+PARENT ID                 : 35493
+RANK                      : subphylum
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Streptophytina
+SYNONYM                   : Charophyta/Embryophyta group
+EQUIVALENT NAME           : charophyte/embryophyte group
+//
+ID                        : 131567
+PARENT ID                 : 1
+RANK                      : no rank
+GC ID                     : 1
+SCIENTIFIC NAME           : cellular organisms
+SYNONYM                   : biota
+//
+ID                        : 171638
+PARENT ID                 : 3745
+RANK                      : subfamily
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Rosoideae
+//
+ID                        : 203802
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria grandiflora
+//
+ID                        : 306640
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria sp. WO2004106530
+//
+ID                        : 352854
+PARENT ID                 : 3746
+RANK                      : species
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragaria sp. 301
+//
+ID                        : 721789
+PARENT ID                 : 171638
+RANK                      : tribe
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Potentilleae
+//
+ID                        : 1184124
+PARENT ID                 : 721789
+RANK                      : subtribe
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Fragariinae
+//
+ID                        : 1437183
+PARENT ID                 : 3398
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Mesangiospermae
+//
+ID                        : 1437201
+PARENT ID                 : 91827
+RANK                      : no rank
+GC ID                     : 1
+MGC ID                    : 1
+SCIENTIFIC NAME           : Pentapetalae
+//
