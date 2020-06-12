@@ -9,7 +9,10 @@ import argparse
 import logging
 from taxonomy_update import make_variants, taxonomy2dict
 
-ranks = [
+class DictWriter:
+    PREFIX = "species:ncbi:"
+    
+    RANKS = [
     "class",
     "cohort",
     "family",
@@ -41,11 +44,8 @@ ranks = [
     "superphylum",
     "tribe",
     "varietas",
-]
+    ]
 
-
-class DictWriter:
-    PREFIX = "species:ncbi:"
 
     def write(self, input: str, output: str, rank: str) -> int:
         counter = 0
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     PARSER.add_argument(
         "-r",
         "--rank",
-        choices=ranks,
+        choices=DictWriter.RANKS,
         help="Rank of the entry",
         default="species",
         type=str,
