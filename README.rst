@@ -9,17 +9,13 @@ This project contains the functions necessary to update the list of species used
 
 ---------------
 
-The species dictionaries available for LINNAEUS via https://sourceforge.net/projects/linnaeus/files/Entity_packs/ haven't been updated since 2011. To be able to tag the most recently discovered species, build a new one using the following lines of Python::
+The species dictionaries available for LINNAEUS via https://sourceforge.net/projects/linnaeus/files/Entity_packs/ haven't been updated since 2011. To be able to tag the most recently discovered species, build a new one using the following simple steps::
 
-  from taxonomy_update import make_variants, taxonomy2dict
+  git clone https://github.com/JULIELab/taxonupdate.git
+  cd taxonupdate
+  wget ftp://ftp.ebi.ac.uk/pub/databases/taxonomy/taxonomy.dat
+  # With default arguments, this is equal to:
+  # python DictWriter.py -i taxonomy.dat -o taxonomy.tsv --rank species
+  python DictWriter.py
 
-  PREFIX = 'species:ncbi:'
-  tax = 'taxonomy.dat'
-  with open('dict-species.tsv', 'wt') as species:
-      for entry in taxonomy2dict(tax):
-          if entry['RANK'] != 'species':
-              continue
-          variants = sorted(make_variants(entry))
-          species.write(PREFIX + entry['ID'] + '\t' + '|'.join(variants) + '\n')
 
-taxonomy.dat can be downloaded from ftp://ftp.ebi.ac.uk/pub/databases/taxonomy/taxonomy.dat
