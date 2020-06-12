@@ -79,7 +79,6 @@ if __name__ == "__main__":
         "-o", "--output", help="Write into this file", default="./taxonomy.tsv", type=str
     )
     ARGS = PARSER.parse_args()
-    print(repr(ARGS))
     writer = DictWriter()
     lines = writer.write(ARGS.input, ARGS.output, ARGS.rank)
     logging.info("%d lines written", lines)
