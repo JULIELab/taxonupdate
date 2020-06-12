@@ -7,7 +7,6 @@ Created on Fri Jun 12 11:12:11 2020
 """
 import argparse
 from typing import Union
-import logging
 from pathlib import Path
 import sys
 from taxonomy_update import make_variants, taxonomy2dict
@@ -53,6 +52,24 @@ class DictWriter:
     def write(
         self, input: Union[Path, str], output: Union[Path, str], rank: str
     ) -> int:
+        '''
+        
+
+        Parameters
+        ----------
+        input : Union[Path, str]
+            DESCRIPTION.
+        output : Union[Path, str]
+            DESCRIPTION.
+        rank : str
+            DESCRIPTION.
+
+        Returns
+        -------
+        int
+            DESCRIPTION.
+
+        '''
         counter = 0
         with open(output, "wt") as out:
             for entry in taxonomy2dict(input):
@@ -67,7 +84,6 @@ class DictWriter:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(format="%(levelname)s: %(message)s")
     PARSER = argparse.ArgumentParser(
         description="Writes a dictionary containing all entries of a specific rank"
     )
@@ -96,15 +112,18 @@ if __name__ == "__main__":
     ARGS = PARSER.parse_args()
     input = Path(ARGS.input)
     if not input.exists():
-        logging.error("Input file %s does not exists.", input)
+        print(f"ERROR: Input file {input} does not exists.", file=sys.stderr)
         sys.exit(1)
     if not input.is_file():
-        logging.error("Input argument %s is not a file.", input)
+        print(f"ERROR: Input argument {input} is not a file.", file=sys.stderr)
         sys.exit(1)
     output = Path(ARGS.output)
     if output.exists():
-        logging.error("Output file %s already exists.", output)
+        print(f"ERROR: Output file {output} already exists.", file=sys.stdout)
         sys.exit(1)
     writer = DictWriter()
     lines = writer.write(ARGS.input, ARGS.output, ARGS.rank)
-    logging.info("%d lines written", lines)
+    if lines == 1:
+        print("1 line written", file=sys.stdout)
+    else:
+        print(f"{lines} lines written", file=sys.stdout)
