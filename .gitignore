@@ -3,3 +3,5 @@ taxonomy.dat
 # Coverage report
 .coverage
 htmlcov
+
+__pycache__
