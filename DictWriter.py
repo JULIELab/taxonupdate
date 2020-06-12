@@ -6,7 +6,9 @@ Created on Fri Jun 12 11:12:11 2020
 @author: Kampe
 """
 import argparse
-import logging
+from typing import Union
+from pathlib import Path
+import sys
 from taxonomy_update import make_variants, taxonomy2dict
 
 
@@ -47,7 +49,27 @@ class DictWriter:
         "varietas",
     ]
 
-    def write(self, input: str, output: str, rank: str) -> int:
+    def write(
+        self, input: Union[Path, str], output: Union[Path, str], rank: str
+    ) -> int:
+        """
+        Writes a dictionary containing all entries of a specific rank.
+
+        Parameters
+        ----------
+        input : Union[Path, str]
+            Path to taxonomy.dat
+        output : Union[Path, str]
+            Write into this file
+        rank : str
+            Rank of the entry, e.g. 'species' or 'genus'
+
+        Returns
+        -------
+        int
+            Number of lines (entries) written.
+
+        """
         counter = 0
         with open(output, "wt") as out:
             for entry in taxonomy2dict(input):
@@ -88,7 +110,20 @@ if __name__ == "__main__":
         type=str,
     )
     ARGS = PARSER.parse_args()
-    print(repr(ARGS))
+    input = Path(ARGS.input)
+    if not input.exists():
+        print(f"ERROR: Input file {input} does not exists.", file=sys.stderr)
+        sys.exit(1)
+    if not input.is_file():
+        print(f"ERROR: Input argument {input} is not a file.", file=sys.stderr)
+        sys.exit(1)
+    output = Path(ARGS.output)
+    if output.exists():
+        print(f"ERROR: Output file {output} already exists.", file=sys.stdout)
+        sys.exit(1)
     writer = DictWriter()
     lines = writer.write(ARGS.input, ARGS.output, ARGS.rank)
-    logging.info("%d lines written", lines)
+    if lines == 1:
+        print("Wrote 1 entry", file=sys.stdout)
+    else:
+        print(f"Wrote {lines} entries", file=sys.stdout)

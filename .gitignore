@@ -1,4 +1,5 @@
 taxonomy.dat
+*.tsv
 
 # Coverage report
 .coverage
