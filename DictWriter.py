@@ -52,24 +52,24 @@ class DictWriter:
     def write(
         self, input: Union[Path, str], output: Union[Path, str], rank: str
     ) -> int:
-        '''
-        
+        """
+        Writes a dictionary containing all entries of a specific rank.
 
         Parameters
         ----------
         input : Union[Path, str]
-            DESCRIPTION.
+            Path to taxonomy.dat
         output : Union[Path, str]
-            DESCRIPTION.
+            Write into this file
         rank : str
-            DESCRIPTION.
+            Rank of the entry, e.g. 'species' or 'genus'
 
         Returns
         -------
         int
-            DESCRIPTION.
+            Number of lines (entries) written.
 
-        '''
+        """
         counter = 0
         with open(output, "wt") as out:
             for entry in taxonomy2dict(input):
@@ -124,6 +124,6 @@ if __name__ == "__main__":
     writer = DictWriter()
     lines = writer.write(ARGS.input, ARGS.output, ARGS.rank)
     if lines == 1:
-        print("1 line written", file=sys.stdout)
+        print("Wrote 1 entry", file=sys.stdout)
     else:
-        print(f"{lines} lines written", file=sys.stdout)
+        print(f"Wrote {lines} entries", file=sys.stdout)
