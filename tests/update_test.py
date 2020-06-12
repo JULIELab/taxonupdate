@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''Tests for the taxonomy updater.'''
-import pytest
 from taxonomy_update import make_variants, taxonomy2dict
 
 
