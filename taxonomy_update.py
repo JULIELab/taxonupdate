@@ -107,4 +107,5 @@ def make_variants(tax_entry: Dict) -> List[str]:
         values = tax_entry.get(name, [])
         for value in values:
             variants.add(value)
+            variants.add(value[0].upper() + value[1:])
     return variants

@@ -11,7 +11,8 @@ def test_allalpha():
                   'GENBANK COMMON NAME': ['wild strawberry'],
                   'COMMON NAME': ['European strawberry',
                                   'alpine strawberry', 'wood strawberry']}
-    expected = ('European strawberry|F. vesca|F.vesca|Fragaria vesca|'
+    expected = ('Alpine strawberry|European strawberry|F. vesca|F.vesca|'
+                'Fragaria vesca|Wild strawberry|Wood strawberry|'
                 'alpine strawberry|f. vesca|f.vesca|fragaria vesca|'
                 'wild strawberry|wood strawberry')
     variants = sorted(make_variants(strawberry))
