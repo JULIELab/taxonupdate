@@ -6,7 +6,7 @@ Created on Fri Jun 12 11:12:11 2020
 @author: Kampe
 """
 import argparse
-from typing import Union
+from typing import cast, Union
 from pathlib import Path
 import sys
 from taxonomy_update import make_variants, taxonomy2dict
@@ -50,7 +50,7 @@ class DictWriter:
     ]
 
     def write(
-        self, input: Union[Path, str], output: Union[Path, str], rank: str
+        self, input: Union[Path, str], output: Union[Path, str], rank: str, root: str
     ) -> int:
         """
         Writes a dictionary containing all entries of a specific rank.
@@ -63,6 +63,8 @@ class DictWriter:
             Write into this file
         rank : str
             Rank of the entry, e.g. 'species' or 'genus'
+        root : str
+            The root of a subtree. Only entries from this subtree will be selected
 
         Returns
         -------
@@ -77,7 +79,11 @@ class DictWriter:
                     continue
                 variants = sorted(make_variants(entry))
                 _ = out.write(
-                    DictWriter.PREFIX + entry["ID"] + "\t" + "|".join(variants) + "\n"
+                    DictWriter.PREFIX
+                    + cast(str, entry["ID"])
+                    + "\t"
+                    + "|".join(variants)
+                    + "\n"
                 )
                 counter += 1
         return counter
@@ -109,6 +115,12 @@ if __name__ == "__main__":
         default="./taxonomy.tsv",
         type=str,
     )
+    PARSER.add_argument(
+        "--root",
+        help="Limit the selection to the subtree with this root, e.g. 'bacteria'",
+        default="",
+        type=str,
+    )
     ARGS = PARSER.parse_args()
     input = Path(ARGS.input)
     if not input.exists():
@@ -122,7 +134,7 @@ if __name__ == "__main__":
         print(f"ERROR: Output file {output} already exists.", file=sys.stdout)
         sys.exit(1)
     writer = DictWriter()
-    lines = writer.write(ARGS.input, ARGS.output, ARGS.rank)
+    lines = writer.write(ARGS.input, ARGS.output, ARGS.rank, ARGS.root)
     if lines == 1:
         print("Wrote 1 entry", file=sys.stdout)
     else:

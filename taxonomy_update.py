@@ -4,27 +4,57 @@
 Functions to process the NCBI Taxonomy.
 """
 
-from typing import Dict, List
+from typing import cast, Dict, Iterator, List, Set, Union
 import logging
+from pathlib import Path
 import re
 
-FIELDS = ['ID', 'PARENT ID', 'RANK', 'GC ID', 'MGC ID', 'SCIENTIFIC NAME',
-          'ANAMORPH', 'BLAST NAME', 'COMMON NAME', 'EQUIVALENT NAME',
-          'GENBANK ACRONYM', 'GENBANK ANAMORPH', 'GENBANK COMMON NAME',
-          'GENBANK SYNONYM', 'IN-PART', 'MISNOMER', 'MISSPELLING', 'SYNONYM',
-          'TELEOMORPH', 'INCLUDES', 'ACRONYM']
-UNIQUE = frozenset(['ID', 'GC ID', 'MGC ID', 'PARENT ID', 'RANK'])
+FIELDS = [
+    "ID",
+    "PARENT ID",
+    "RANK",
+    "GC ID",
+    "MGC ID",
+    "SCIENTIFIC NAME",
+    "ANAMORPH",
+    "BLAST NAME",
+    "COMMON NAME",
+    "EQUIVALENT NAME",
+    "GENBANK ACRONYM",
+    "GENBANK ANAMORPH",
+    "GENBANK COMMON NAME",
+    "GENBANK SYNONYM",
+    "IN-PART",
+    "MISNOMER",
+    "MISSPELLING",
+    "SYNONYM",
+    "TELEOMORPH",
+    "INCLUDES",
+    "ACRONYM",
+]
+UNIQUE = frozenset(["ID", "GC ID", "MGC ID", "PARENT ID", "RANK"])
 
-TAXONOMIC = ['SCIENTIFIC NAME', 'SYNONYM', 'GENBANK SYNONYM',
-             'EQUIVALENT NAME', 'MISSPELLING', 'TELEOMORPH', 'ANAMORPH',
-             'GENBANK ANAMORPH', 'MISNOMER', 'IN-PART']
-COMMON_NAMES = ['GENBANK COMMON NAME', 'COMMON NAME', 'BLAST NAME']
+TAXONOMIC = [
+    "SCIENTIFIC NAME",
+    "SYNONYM",
+    "GENBANK SYNONYM",
+    "EQUIVALENT NAME",
+    "MISSPELLING",
+    "TELEOMORPH",
+    "ANAMORPH",
+    "GENBANK ANAMORPH",
+    "MISNOMER",
+    "IN-PART",
+]
+COMMON_NAMES = ["GENBANK COMMON NAME", "COMMON NAME", "BLAST NAME"]
 
-FIELD_REGEX = re.compile('(' + '|'.join(FIELDS) + r')\s+:\s')
-DELIMITER = re.compile('//')
+FIELD_REGEX = re.compile("(" + "|".join(FIELDS) + r")\s+:\s")
+DELIMITER = re.compile("//")
 
 
-def taxonomy2dict(taxonomy: str) -> Dict:
+def taxonomy2dict(
+    taxonomy: Union[Path, str]
+) -> Iterator[Dict[str, Union[str, List[str]]]]:
     """
     Reads in the NCBI Taxonomy as processed by the European Bioinformatics
     Institute.
@@ -33,9 +63,11 @@ def taxonomy2dict(taxonomy: str) -> Dict:
 
     Yields entries as dictionaries.
     """
-    with open(taxonomy, 'rt') as tax:
+    with open(taxonomy, "rt") if isinstance(taxonomy, str) else taxonomy.open(
+        "rt"
+    ) as tax:
         first = True
-        entry = dict()
+        entry: Dict[str, Union[str, List[str]]] = dict()
         error = False
         for i, line in enumerate(tax):
             if error:
@@ -43,15 +75,15 @@ def taxonomy2dict(taxonomy: str) -> Dict:
                     entry = dict()
                     first = True
                     error = False
-                    if 'ID' in entry:
-                        logging.warning('Skipped entry %d', entry['ID'])
+                    if "ID" in entry:
+                        logging.warning("Skipped entry %d", entry["ID"])
             elif first:
                 tax_id = FIELD_REGEX.match(line)
                 if tax_id is None:
-                    logging.warning('Missing ID on line %d', i)
+                    logging.warning("Missing ID on line %d", i)
                     error = True
                 else:
-                    entry['ID'] = line[tax_id.end():].rstrip()
+                    entry["ID"] = line[tax_id.end() :].rstrip()
                     first = False
             elif DELIMITER.match(line):
                 yield entry
@@ -61,21 +93,21 @@ def taxonomy2dict(taxonomy: str) -> Dict:
             else:
                 field = FIELD_REGEX.match(line)
                 if field is None:
-                    logging.warning('Unknown format on line %d', i)
-                    logging.warning('line %d: %s', i, line)
+                    logging.warning("Unknown format on line %d", i)
+                    logging.warning("line %d: %s", i, line)
                     error = True
                 else:
                     match = FIELD_REGEX.match(line)
                     if match:
                         if field.group(1) in UNIQUE:
-                            entry[field.group(1)] = line[field.end():].rstrip()
+                            entry[field.group(1)] = line[field.end() :].rstrip()
                         else:
-                            values = entry.get(field.group(1), [])
-                            values.append(line[field.end():].rstrip())
+                            values = cast(List[str], entry.get(field.group(1), []))
+                            values.append(line[field.end() :].rstrip())
                             entry[field.group(1)] = values
 
 
-def make_variants(tax_entry: Dict) -> List[str]:
+def make_variants(tax_entry: Dict[str, Union[str, List[str]]]) -> Set[str]:
     """
     Generates spelling variants as described in the LINNAEUS paper.
     """
@@ -92,7 +124,7 @@ def make_variants(tax_entry: Dict) -> List[str]:
                 # Original spelling, all lowercase
                 variants.add(value.lower())
                 # Abbreviated genus
-                tokens[0] = tokens[0][0] + '.'
+                tokens[0] = tokens[0][0] + "."
                 variants.add(" ".join(tokens))
                 # Abbreviated genus, all lowercase
                 variants.add(" ".join(tokens).lower())
