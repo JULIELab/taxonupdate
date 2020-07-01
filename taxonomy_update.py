@@ -77,7 +77,7 @@ def taxonomy2dict(taxonomy: str) -> Dict:
 
 def make_variants(tax_entry: Dict) -> List[str]:
     """
-    Generates spelling variants as describes in the LINNAEUS paper.
+    Generates spelling variants as described in the LINNAEUS paper.
     """
     variants = set()
     for name in TAXONOMIC:
