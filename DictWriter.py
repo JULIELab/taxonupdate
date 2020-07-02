@@ -77,19 +77,46 @@ class DictWriter:
 
         """
         counter = 0
-        with open(output, "wt") as out:
+        if root:
+            taxa = dict()
             for entry in taxonomy2dict(input):
-                if entry["RANK"] != rank:
-                    continue
-                variants = sorted(make_variants(entry))
-                _ = out.write(
-                    DictWriter.PREFIX
-                    + cast(str, entry["ID"])
-                    + "\t"
-                    + "|".join(variants)
-                    + "\n"
-                )
-                counter += 1
+                taxa[entry["ID"]] = entry
+            with open(output, "wt") as out:
+                for key, entry in taxa.items():
+                    parent = entry["PARENT ID"]
+                    while True:
+                        if key == root:
+                            if entry["RANK"] != rank:
+                                continue
+                            variants = sorted(make_variants(entry))
+                            _ = out.write(
+                                DictWriter.PREFIX
+                                + cast(str, entry["ID"])
+                                + "\t"
+                                + "|".join(variants)
+                                + "\n"
+                            )
+                            counter += 1
+                        else:
+                            temp = taxa.get(parent, None)
+                            if temp is None:
+                                break
+                            key = cast(str, temp["ID"])
+                            parent = temp["PARENT ID"]
+        else:
+            with open(output, "wt") as out:
+                for entry in taxonomy2dict(input):
+                    if entry["RANK"] != rank:
+                        continue
+                    variants = sorted(make_variants(entry))
+                    _ = out.write(
+                        DictWriter.PREFIX
+                        + cast(str, entry["ID"])
+                        + "\t"
+                        + "|".join(variants)
+                        + "\n"
+                    )
+                    counter += 1
         return counter
 
 
