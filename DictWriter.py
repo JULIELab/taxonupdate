@@ -78,9 +78,9 @@ class DictWriter:
             parent = cast(str, entry["PARENT ID"])
             while True:
                 if key == root:
-                    if entry["RANK"] != rank:
-                        continue
-                    yield entry
+                    if entry["RANK"] == rank:
+                        yield entry
+                    break
                 else:
                     temp = taxa.get(parent, None)
                     if temp is None:
