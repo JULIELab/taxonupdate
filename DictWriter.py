@@ -8,7 +8,7 @@ Created on Fri Jun 12 11:12:11 2020
 @author: Kampe
 """
 import argparse
-from typing import cast, Any, Dict, Iterator, List, Union
+from typing import cast, Dict, Iterator, List, Union
 from pathlib import Path
 import sys
 from taxonomy_update import make_variants, taxonomy2dict
