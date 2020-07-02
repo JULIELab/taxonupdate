@@ -8,7 +8,7 @@ Created on Fri Jun 12 11:12:11 2020
 @author: Kampe
 """
 import argparse
-from typing import cast, Union
+from typing import cast, Any, Dict, Iterator, List, Union
 from pathlib import Path
 import sys
 from taxonomy_update import make_variants, taxonomy2dict
@@ -53,6 +53,41 @@ class DictWriter:
         "varietas",
     ]
 
+    def filter_by_root(
+        self, taxa: Dict[str, Dict[str, Union[str, List[str]]]], root: str, rank: str
+    ) -> Iterator[Dict[str, Union[str, List[str]]]]:
+        """
+        Filter all entries to restrict matches to a given subtree defined by the root.
+
+        Parameters
+        ----------
+        taxa : TYPE
+            A dictionary of NCBI Taxonomy entries
+        root : str
+            The root of a subtree. Only entries from this subtree will be selected
+        rank : str
+            Rank of the entry, e.g. 'species' or 'genus'
+
+        Yields
+        ------
+        Iterator[Dict[str, Union[str, List[str]]]]
+            Entries that are taxonomically below or equal to the root.
+
+        """
+        for key, entry in taxa.items():
+            parent = cast(str, entry["PARENT ID"])
+            while True:
+                if key == root:
+                    if entry["RANK"] != rank:
+                        continue
+                    yield entry
+                else:
+                    temp = taxa.get(parent, None)
+                    if temp is None:
+                        break
+                    key = cast(str, temp["ID"])
+                    parent = cast(str, temp["PARENT ID"])
+
     def write(
         self, input: Union[Path, str], output: Union[Path, str], rank: str, root: str
     ) -> int:
@@ -78,31 +113,20 @@ class DictWriter:
         """
         counter = 0
         if root:
-            taxa = dict()
+            taxa: Dict[str, Dict[str, Union[str, List[str]]]] = dict()
             for entry in taxonomy2dict(input):
-                taxa[entry["ID"]] = entry
+                taxa[cast(str, entry["ID"])] = entry
             with open(output, "wt") as out:
-                for key, entry in taxa.items():
-                    parent = entry["PARENT ID"]
-                    while True:
-                        if key == root:
-                            if entry["RANK"] != rank:
-                                continue
-                            variants = sorted(make_variants(entry))
-                            _ = out.write(
-                                DictWriter.PREFIX
-                                + cast(str, entry["ID"])
-                                + "\t"
-                                + "|".join(variants)
-                                + "\n"
-                            )
-                            counter += 1
-                        else:
-                            temp = taxa.get(parent, None)
-                            if temp is None:
-                                break
-                            key = cast(str, temp["ID"])
-                            parent = temp["PARENT ID"]
+                for subtree_entry in self.filter_by_root(taxa, root, rank):
+                    variants = sorted(make_variants(subtree_entry))
+                    _ = out.write(
+                        DictWriter.PREFIX
+                        + cast(str, subtree_entry["ID"])
+                        + "\t"
+                        + "|".join(variants)
+                        + "\n"
+                    )
+                    counter += 1
         else:
             with open(output, "wt") as out:
                 for entry in taxonomy2dict(input):
