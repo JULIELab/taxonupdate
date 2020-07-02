@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Command line tool to easily generate updated dictionaries out of the NCBI Taxonomy.
+
 Created on Fri Jun 12 11:12:11 2020
 
 @author: Kampe
@@ -13,6 +15,8 @@ from taxonomy_update import make_variants, taxonomy2dict
 
 
 class DictWriter:
+    """All necessary functions to filter and write NCBI Taxonomy entries."""
+
     PREFIX = "species:ncbi:"
 
     RANKS = [
@@ -53,7 +57,7 @@ class DictWriter:
         self, input: Union[Path, str], output: Union[Path, str], rank: str, root: str
     ) -> int:
         """
-        Writes a dictionary containing all entries of a specific rank.
+        Write a dictionary containing all entries of a specific rank.
 
         Parameters
         ----------

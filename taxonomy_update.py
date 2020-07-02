@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Functions to process the NCBI Taxonomy.
+
+Created on Wed May 15 13:10:06 2019
+
+@author: Kampe
 """
 
 from typing import cast, Dict, Iterator, List, Set, Union
@@ -56,8 +60,7 @@ def taxonomy2dict(
     taxonomy: Union[Path, str]
 ) -> Iterator[Dict[str, Union[str, List[str]]]]:
     """
-    Reads in the NCBI Taxonomy as processed by the European Bioinformatics
-    Institute.
+    Read in the NCBI Taxonomy as processed by the European Bioinformatics Institute.
 
     taxonomy: path to the taxonomy file
 
@@ -108,9 +111,7 @@ def taxonomy2dict(
 
 
 def make_variants(tax_entry: Dict[str, Union[str, List[str]]]) -> Set[str]:
-    """
-    Generates spelling variants as described in the LINNAEUS paper.
-    """
+    """Generate spelling variants as described in the LINNAEUS paper."""
     variants = set()
     for name in TAXONOMIC:
         values = tax_entry.get(name, [])
