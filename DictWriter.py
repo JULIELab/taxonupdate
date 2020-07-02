@@ -81,12 +81,11 @@ class DictWriter:
                     if entry["RANK"] == rank:
                         yield entry
                     break
-                else:
-                    temp = taxa.get(parent, None)
-                    if temp is None:
-                        break
-                    key = cast(str, temp["ID"])
-                    parent = cast(str, temp["PARENT ID"])
+                temp = taxa.get(parent, None)
+                if temp is None:
+                    break
+                key = cast(str, temp["ID"])
+                parent = cast(str, temp["PARENT ID"])
 
     def write(
         self, input: Union[Path, str], output: Union[Path, str], rank: str, root: str
@@ -177,20 +176,20 @@ if __name__ == "__main__":
         type=str,
     )
     ARGS = PARSER.parse_args()
-    input = Path(ARGS.input)
-    if not input.exists():
-        print(f"ERROR: Input file {input} does not exists.", file=sys.stderr)
+    INPUT = Path(ARGS.input)
+    if not INPUT.exists():
+        print(f"ERROR: Input file {INPUT} does not exists.", file=sys.stderr)
         sys.exit(1)
-    if not input.is_file():
-        print(f"ERROR: Input argument {input} is not a file.", file=sys.stderr)
+    if not INPUT.is_file():
+        print(f"ERROR: Input argument {INPUT} is not a file.", file=sys.stderr)
         sys.exit(1)
-    output = Path(ARGS.output)
-    if output.exists():
-        print(f"ERROR: Output file {output} already exists.", file=sys.stdout)
+    OUTPUT = Path(ARGS.output)
+    if OUTPUT.exists():
+        print(f"ERROR: Output file {OUTPUT} already exists.", file=sys.stdout)
         sys.exit(1)
-    writer = DictWriter()
-    lines = writer.write(ARGS.input, ARGS.output, ARGS.rank, ARGS.root)
-    if lines == 1:
+    WRITER = DictWriter()
+    LINES = WRITER.write(ARGS.input, ARGS.output, ARGS.rank, ARGS.root)
+    if LINES == 1:
         print("Wrote 1 entry", file=sys.stdout)
     else:
-        print(f"Wrote {lines} entries", file=sys.stdout)
+        print(f"Wrote {LINES} entries", file=sys.stdout)
