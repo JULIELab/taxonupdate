@@ -5,6 +5,34 @@ GC ID                     : 1
 SCIENTIFIC NAME           : root
 SYNONYM                   : all
 //
+ID                        : 2
+PARENT ID                 : 131567
+RANK                      : superkingdom
+GC ID                     : 11
+SCIENTIFIC NAME           : Bacteria
+GENBANK COMMON NAME       : eubacteria
+IN-PART                   : Procaryotae
+IN-PART                   : Monera
+IN-PART                   : prokaryotes
+IN-PART                   : prokaryote
+IN-PART                   : Prokaryotae
+IN-PART                   : Prokaryota
+BLAST NAME                : bacteria
+//
+ID                        : 1224
+PARENT ID                 : 2
+RANK                      : phylum
+GC ID                     : 11
+SCIENTIFIC NAME           : Proteobacteria
+SYNONYM                   : Alphaproteobacteriota
+SYNONYM                   : Alphaproteobacteraeota
+COMMON NAME               : purple photosynthetic bacteria and relatives
+COMMON NAME               : purple photosynthetic bacteria
+COMMON NAME               : purple non-sulfur bacteria
+COMMON NAME               : purple bacteria and relatives
+COMMON NAME               : purple bacteria
+BLAST NAME                : proteobacteria
+//
 ID                        : 2759
 PARENT ID                 : 131567
 RANK                      : superkingdom
