@@ -61,7 +61,7 @@ class DictWriter:
 
         Parameters
         ----------
-        taxa : TYPE
+        taxa : Dict[str, Dict[str, Union[str, List[str]]]]
             A dictionary of NCBI Taxonomy entries
         root : str
             The root of a subtree. Only entries from this subtree will be selected
