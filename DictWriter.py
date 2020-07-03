@@ -171,7 +171,7 @@ if __name__ == "__main__":
     )
     PARSER.add_argument(
         "--root",
-        help="Limit the selection to the subtree with this root, e.g. 'bacteria'",
+        help="Limit the selection to the subtree with this root, e.g. --root 2 (ID of bacteria superkingdom)'",
         default="",
         type=str,
     )
