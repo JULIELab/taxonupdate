@@ -8,3 +8,5 @@ htmlcov
 __pycache__
 
 .pytype
+.tox/
+taxonupdate.egg-info/
