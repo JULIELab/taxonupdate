@@ -102,7 +102,8 @@ class DictWriter:
         rank : str
             Rank of the entry, e.g. 'species' or 'genus'
         root : str
-            The root of a subtree. Only entries from this subtree will be selected
+            The root of a subtree. Only entries from this subtree will be selected.
+            Corresponds to the ID of an entry.
 
         Returns
         -------
