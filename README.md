@@ -20,3 +20,29 @@ wget ftp://ftp.ebi.ac.uk/pub/databases/taxonomy/taxonomy.dat
 # python DictWriter.py -i taxonomy.dat -o taxonomy.tsv --rank species
 python DictWriter.py
 ```
+
+Additionally, it is possible to restrict the dictionary to a subtree defined by its root ID.
+E. g., if one wanted to only extract bacterial species, it can be done issuing:
+
+```bash
+python DictWriter -o bacterial_species.tsv --root 2
+```
+
+## List of major taxonomic groups
+
+To make the use of this feature easier, it might help to consult the following lists:
+
+### Superkingdoms
+
+Archaea (ID: 2157)
+Bacteria (ID: 2)
+Eukaryota (ID: 2759)
+Viroids (ID: 12884)
+Viruses (ID: 10239)
+
+### Kingdoms
+
+Fungi (ID: 4751)
+Metazoa (ID: 33208)
+Viridiplantae (ID: 33090)
+
