@@ -46,3 +46,4 @@ Fungi (ID: 4751)
 Metazoa (ID: 33208)
 Viridiplantae (ID: 33090)
 
+This work has been funded by the German Research Foundation (DFG) as part of the project D01 in the Collaborative Research Center (CRC) 1076 “AquaDiva”.
